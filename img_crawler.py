@@ -1,4 +1,3 @@
-from logging import root
 from icrawler.builtin import BingImageCrawler
 import argparse
 import os 
@@ -11,10 +10,11 @@ class Image_Crawler(object):
         self.root_dir = root_dir
 
     def crawl(self,keyword,max_num=1000):
-        crawler = BingImageCrawler(storage={self.root_dir: keyword})
+        crawler = BingImageCrawler(storage={self.root_dir:keyword})
         crawler.crawl(keyword=keyword, max_num=max_num)
 
 def main(args):
+    print(args.root_dir)
     image_crawler = Image_Crawler(args.root_dir)
     image_crawler.crawl(args.keyword,args.num_image)
 
@@ -27,7 +27,7 @@ if __name__ == "__main__":
         dest = "keyword",
         help = "keyword which you want to search",
         type = str,
-        requirement = True,
+        required = True,
     )
     parser.add_argument(
         "-n",
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         dest="num_image",
         help="number of images",
         type = int,
-        requirement = False
+        default=1000
     )
     parser.add_argument(
         "-r",
