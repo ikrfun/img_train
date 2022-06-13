@@ -10,7 +10,7 @@ class Image_Crawler(object):
         self.root_dir = root_dir
 
     def crawl(self,keyword,max_num=1000):
-        crawler = BingImageCrawler(storage={self.root_dir:keyword})
+        crawler = BingImageCrawler(storage={'root_dir': keyword})
         crawler.crawl(keyword=keyword, max_num=max_num)
 
 def main(args):
